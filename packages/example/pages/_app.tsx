@@ -129,12 +129,15 @@ const connectors = connectorsForWallets([
   },
 ]);
 
-const wagmiClient = createClient({
-  autoConnect: true,
-  connectors,
-  provider,
-  webSocketProvider,
-});
+// prevent wagmi initialization during SSR
+const wagmiClient =
+  typeof window !== 'undefined' &&
+  createClient({
+    autoConnect: true,
+    connectors,
+    provider,
+    webSocketProvider,
+  });
 
 const getSiweMessageOptions: GetSiweMessageOptions = () => ({
   statement: 'Sign in to the RainbowKit Demo',
