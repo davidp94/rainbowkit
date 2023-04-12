@@ -25,9 +25,7 @@ const nextConfig = {
   },
 };
 
-// https://github.com/cyrilwanner/next-compose-plugins/issues/59
-module.exports = (phase, { defaultConfig }) =>
-  withPlugins([withVanillaExtract, withContentlayer], nextConfig)(phase, {
-    ...defaultConfig,
-    ...nextConfig,
-  });
+module.exports = withPlugins(
+  [withVanillaExtract, withContentlayer],
+  nextConfig
+);
