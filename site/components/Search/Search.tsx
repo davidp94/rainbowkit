@@ -41,7 +41,7 @@ export function SearchProvider({ children }) {
     <>
       <Head>
         <link
-          crossOrigin="anonymous"
+          crossOrigin="true"
           href={`https://${APP_ID}-dsn.algolia.net`}
           rel="preconnect"
         />
