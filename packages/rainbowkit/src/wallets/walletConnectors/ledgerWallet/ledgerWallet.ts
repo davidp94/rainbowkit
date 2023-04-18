@@ -9,11 +9,13 @@ import { Wallet } from '../../Wallet';
 import { getWalletConnectConnector } from '../../getWalletConnectConnector';
 
 export interface LedgerWalletOptions {
+  projectId?: string;
   chains: Chain[];
 }
 
 export const ledgerWallet = ({
   chains,
+  projectId,
   ...options
 }: LedgerWalletOptions & InjectedConnectorOptions): Wallet => {
   const isLedgerExtensionCompatible = (isIOS() || isMacOS()) && isSafari();
@@ -42,8 +44,7 @@ export const ledgerWallet = ({
             chains,
             options,
           })
-        : getWalletConnectConnector({ chains });
-
+        : getWalletConnectConnector({ projectId, chains });
       return {
         connector,
         mobile: {
